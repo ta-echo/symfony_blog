@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article index{% endblock %}
+
+{% block body %}
+<style>
+    /*.example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }*/
+    table { margin:auto; max-width: 95%; }
+    div.container { justify-content: center; max-width: 95%; }  
+</style>
+
+    <h1>&nbsp;&nbsp;Article index</h1>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Titre</th>
+                <th>Contenu</th>
+                <th>Date_pub</th>
+                <th>Auteur</th>
+                <th>Image</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for article in articles %}
+            <tr>
+                <td>{{ article.id }}</td>
+                <td>{{ article.titre }}</td>
+                <td>{{ article.contenu | slice(0, 300) }}</td>
+                 <td>{{ article.datePub ? article.datePub|date('Y-m-d H:i:s') : '' }}</td>
+                <td>{{ article.auteur }}</td>
+                     <td><img src="{{ asset('assets/images/' ~ article.image)}}" alt="" style="width:80px"></td>
+            
+                <td>
+                    <a href="{{ path('article_show', {'id': article.id}) }}">show</a>
+                    <a href="{{ path('article_edit', {'id': article.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('article_new') }}">Create a new article</a>
+    </div>
+{% endblock %}
