@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Detail Article
+{% endblock %}
+
+{% block body %}
+
+<div class="container">
+<div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+		<div class="col p-4 d-flex flex-column position-static">
+			<strong class="d-inline-block mb-2 text-primary">{{ article.category }}</strong>
+			<h3 class="mb-0">{{ article.titre }}</h3>
+			<div class="mb-1 text-muted">{{ article.datePub | date('d/m/Y') }}</div>
+			<p class="card-text mb-auto">{{ article.contenu }} ...</p>
+            <p>{{ article.auteur }}</p>
+
+		</div>
+		<div class="col-auto d-none d-lg-block">
+			<img src="{{ asset('assets/images/' ~ article.image)}}" alt="" class="img-thumbnail" style="width:500px">
+		</div>
+	</div>
+    <hr>
+
+    <h4>Commentaires</h4>
+
+    <a href="{{ path('comment_user_new' , {'id' : article.id })}}" class="btn btn-primary">Commenter</a>
+
+    {% for comment in article.comments %}
+
+        <p>{{ comment.message }}</p>
+
+      <p>Auteur : {{ comment.user.nom }}</p>
+
+    {% endfor %}
+
+
+    
+</div>
+
+
+
+{% endblock %}
