@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}category{% endblock %}
+
+{% block body %}
+<style>
+    /*.example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }*/
+  div.container { justify-content: center; max-width: 95%; }  
+</style>
+    <h1>&nbsp;&nbsp;Category</h1>
+<div class="container">
+
+{# {{dump(groupe_b)}} #}
+{# {{dump(secondGroupeF)}} #}
+    <table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+          <th scope="col">Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    {# Boucle FOR sur le tableau groupe_B #}
+    {% for category in list_category %}
+        <tr>
+            <td>{{ category.id }}</td>
+            <td>{{ category.name }}</td>
+            <td><a href="{{ path('show_category' , {'id' : category.id})}}">show</a></td>
+            <td><a href="{{ path('edit_category' , {'id' : category.id})}}">edit</a></td>
+            <td><a href="{{ path('delete_category' , {'id' : category.id})}}">delete</a></td>
+        </tr>    
+    {% endfor %}
+    </tbody>
+</table>
+ <a href="{{ path('add_category')}}">Add category</a>
+</div>
+
+
+{% endblock %}
+
+
+
+
+
+
+
+
