@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}edit category{% endblock %}
+
+{% block body %}
+<div class="container">
+<h2>Modifier une catégorie en particulier</h2>
+    {# Je fais apparaître mon formulaire #}
+    {{ form_start(form) }}
+    <input type="submit" value="Envoyer" placeholder="new category">
+    {{ form_end(form) }}
+</div>
+{% endblock %}
+
+
+
+
+
