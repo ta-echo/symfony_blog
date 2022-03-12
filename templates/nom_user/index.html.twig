@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NomUser index{% endblock %}
+
+{% block body %}
+<style>
+    /*.example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }*/
+       table { margin:auto; max-width: 95%; }
+        div.container { justify-content: center; max-width: 95%; }  
+</style>
+
+
+    <h1>&nbsp;&nbsp;User index</h1>
+<div class="container">
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Email</th>
+                <th>Avatar</th>
+                <th>Password</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for nom_user in nom_users %}
+            <tr>
+                <td>{{ nom_user.id }}</td>
+                <td>{{ nom_user.nom }}</td>
+                <td>{{ nom_user.prenom }}</td>
+                <td>{{ nom_user.email }}</td>
+                <td><img src="{{ asset('assets/images/' ~ nom_user.avatar) }}" alt="" style="width:30px; border-radius:10%;"></td>
+                <td>{{ nom_user.password }}</td>
+                <td>
+                    <a href="{{ path('nom_user_show', {'id': nom_user.id}) }}">show</a>
+                    <a href="{{ path('nom_user_edit', {'id': nom_user.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="6">No records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+      <a href="{{ path('nom_user_new') }}">Create a new user</a>
+</div>
+  
+{% endblock %}

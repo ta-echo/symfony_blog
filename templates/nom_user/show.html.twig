@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}NomUser{% endblock %}
+
+{% block body %}
+    <h1>NomUser</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ nom_user.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ nom_user.nom }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ nom_user.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Email</th>
+                <td>{{ nom_user.email }}</td>
+            </tr>
+            <tr>
+                <th>Password</th>
+                <td>{{ nom_user.password }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('nom_user_index') }}">back to list</a>
+
+    <a href="{{ path('nom_user_edit', {'id': nom_user.id}) }}">edit</a>
+
+    {{ include('nom_user/_delete_form.html.twig') }}
+{% endblock %}
