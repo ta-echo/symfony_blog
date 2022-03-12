@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello UserCommentController!{% endblock %}
+
+{% block body %}
+<div class="container">
+<h6>Entrez votre message</h6>
+
+    {{ form_start(form) }}
+    <input type="submit" value="Envoyer">
+    {{ form_end(form) }}
+    
+</div>
+
+{% endblock %}
