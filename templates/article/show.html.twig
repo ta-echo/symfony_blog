@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Article{% endblock %}
+
+{% block body %}
+    <h1>Article</h1>
+
+<div class="row">
+<div class="col-8">
+<table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ article.id }}</td>
+            </tr>
+            <tr>
+                <th>Titre</th>
+                <td>{{ article.titre }}</td>
+            </tr>
+            <tr>
+                <th>Contenu</th>
+                <td>{{ article.contenu }}</td>
+            </tr>
+            <tr>
+                <th>Date_pub</th>
+                <td>{{ article.datePub ? article.datePub|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+           
+            <tr>
+                <th>Photo</th>
+                <td>{{ article.auteur }}</td>
+                <td><img src="{{ asset('assets/images/' ~ article.image)}}" alt="" style="width:300px"></td>
+                </tr>
+
+        </tbody>
+    </table>
+</div>
+<div class="col-4">
+
+{% for item in article.pictures %}
+<div>
+<img src="{{ asset('assets/images/' ~ item.name)}}"
+alt="{{ item.alt }}" style="width:150px">
+<a href="{{ path('picture_delete' , {'id' : item.id}) }}">Supprimer</a>
+
+</div>
+  {% endfor %}
+ 
+
+
+<div>
+    <a href="{{ path('article_index') }}">back to list</a>
+    <a href="{{ path('article_edit', {'id': article.id}) }}" class="">edit</a>
+    <a href="{{ path('picture_new', {'id': article.id}) }}" class="btn btn-secondary">Ajouter une image</a>
+
+    {{ include('article/_delete_form.html.twig') }}
+    </div>
+
+{% endblock %}
+
+
